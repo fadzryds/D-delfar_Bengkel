@@ -18,42 +18,22 @@
 
     <section class="service-section" id="sparepart">
         <div class="service-header">
-        <h2>Sparepart</h2>
-        <a href="{{ route('sparepart') }}" class="btn-next">Selanjutnya</a>
+            <h2>Sparepart</h2>
+            <a href="{{ route('sparepart') }}" class="btn-next">Selanjutnya</a>
         </div>
     
         <div class="service-grid">
-            <div class="service-card">
-                <img src="/images/oli.jpeg" alt="Oli Mesin">
-                <h3>Oli Mesin</h3>
-                <p>Kualitas terbaik untuk menjaga performa motor.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Booking</a>
-            </div>
-    
-            <div class="service-card">
-                <img src="/images/aki.jpeg" alt="Aki Motor">
-                <h3>Aki Motor</h3>
-                <p>Daya tahan lama dan aman digunakan.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Booking</a>
-            </div>
-    
-            <div class="service-card">
-                <img src="/images/kampas.jpg" alt="Kampas Rem">
-                <h3>Kampas Rem</h3>
-                <p>Memberikan pengereman yang optimal.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Booking</a>
-            </div>
-    
-            <div class="service-card">
-                <img src="/images/v-belt.jpeg" alt="V-Belt Motor">
-                <h3>V-Belt Motor</h3>
-                <p>Kuat dan tahan lama untuk motor matic.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Booking</a>
-            </div>
+            @forelse($spareparts->take(4) as $sparepart)
+                <div class="service-card">
+                    <img src="{{ $sparepart->image ? asset('storage/' . $sparepart->image) : '/images/default-sparepart.jpeg' }}" alt="{{ $sparepart->name }}">
+                    <h3>{{ $sparepart->name }}</h3>
+                    <p>{{ $sparepart->description ?? 'Deskripsi tidak tersedia' }}</p>
+                    <p class="price">Rp. {{ number_format($sparepart->price, 0, ',', '.') }}</p>
+                    <a href="{{ route('sparepart.show', $sparepart->id) }}" class="btn-book">Detail</a>
+                </div>
+            @empty
+                <p>Belum ada sparepart tersedia.</p>
+            @endforelse
         </div>
     </section>
     

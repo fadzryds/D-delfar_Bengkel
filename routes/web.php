@@ -5,14 +5,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SparepartController;
 
-// Landing Page (bebas)
-Route::get('/', function () {
-    return view('LandingPage');
-})->name('landing');
+// Landing Page
+Route::get('/', [SparepartController::class, 'landing'])->name('landing');
 
 // ================= AUTH =================
 
@@ -28,10 +27,8 @@ Route::middleware('guest')->group(function () {
 // LOGOUT (HANYA USER LOGIN)
 Route::post('/logout', function (Request $request) {
     Auth::logout();
-
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-
     return redirect()->route('landing');
 })->name('logout');
 
@@ -45,26 +42,23 @@ Route::middleware('auth')->group(function () {
 });
 
 // Halaman lain
-Route::get('/sparepart', function () {
-    return view('landing.Sparepart');
-})->name('sparepart');
+Route::get('/sparepart', [SparepartController::class, 'index'])->name('sparepart');
 
-Route::get('/description', function () { 
-    return view('landing.Description'); 
-})->name('description'); 
+// Detail sparepart
+Route::get('/sparepart/{id}', [SparepartController::class, 'show'])->name('sparepart.show');
 
-Route::get('/sparepart/{id}', 
-[SparepartController::class, 'show'])->name('sparepart.show');
-
+// Halaman service
 Route::get('/service', function () {
     return view('landing.Service');
 })->name('service');
 
+// Halaman antrian
 Route::get('/antrian', function () {
     return view('landing.antrian');
 })->name('antrian');
 
-Route::middleware('auth')->get(
-    '/invoice/{invoice}',
-    [InvoiceController::class, 'show']
-)->name('invoice.show');
+// Halaman invoice (hanya user login)
+Route::middleware('auth')->get('/invoice/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
+
+// History customer
+Route::get('customer/{id}/history', [HistoryController::class, 'index'])->name('customer.history');

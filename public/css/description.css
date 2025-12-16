@@ -132,3 +132,27 @@
 .btn-other:hover {
     background: #c9302c;
 }
+
+.stock {
+    margin: 8px 0;
+    font-weight: 600;
+}
+
+.stock-available {
+    color: #16a34a;
+}
+
+.stock-empty {
+    color: #dc2626;
+}
+
+.stock-small {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+button:disabled,
+.disabled {
+    background-color: #9ca3af !important;
+    pointer-events: none;
+}
