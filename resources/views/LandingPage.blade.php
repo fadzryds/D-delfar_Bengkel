@@ -19,8 +19,8 @@
             <a href="#about">About</a>
         </nav>
         <div class="auth-buttons">
-            <a href="/register" class="btn-register">Register</a>
-            <a href="/login" class="btn-login">Log in</a>
+            <a href="#" class="btn-register">Register</a>
+            <a href="#" class="btn-login">Log in</a>
         </div>
     </header>
 
@@ -39,7 +39,7 @@
     <section class="service-section" id="sparepart">
         <div class="service-header">
         <h2>Sparepart</h2>
-        <a href="{{ route('sparepart') }}" class="btn-next">Selanjutnya</a>
+        <a href="#" class="btn-next">Selanjutnya</a>
         </div>
     
         <div class="service-grid">
