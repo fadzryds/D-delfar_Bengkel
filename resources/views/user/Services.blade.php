@@ -12,75 +12,24 @@
 <body>
     <header class="navbar">
         <div class="logo">D'Delfar</div>
+    
         <nav class="nav-menu">
-            <a href="#home">Home</a>
-            <a href="#sparepart">Sparepart</a>
-            <a href="#service">Service</a>
-            <a href="#about">About</a>
+            <a href="{{ url('/') }}">Home</a>
+            <a href="{{ url('sparepart') }}">Sparepart</a>
+            <a href="{{ url('service') }}">Service</a>
+            <a href="{{ url('/') }}">About</a>
         </nav>
+    
         <div class="auth-buttons">
-            <a href="/register" class="btn-register">Register</a>
-            <a href="/login" class="btn-login">Log in</a>
+            <a href="#" class="btn-register">Register</a>
+            <a href="#" class="btn-login">Log in</a>
         </div>
     </header>
 
-    <section class="hero" id="home">
-        <div class="hero-text">
-            <p class="subtitle">The Best Provider</p>
-            <h1>Auto Service<br>& Repair</h1>
-            <p class="desc">D'Delfar Bengkel Motor menghadirkan layanan servis premium dengan sentuhan presisi dan dukungan sparepart original yang selalu tersedia. Sistem antrean modern memberikan pengalaman perawatan yang lebih tenang dan tertata.</p>
-            <a href="#" class="btn-read">Read More</a>
-        </div>
-        <div class="hero-image">
-            <img src="/images/zx25r.png" alt="Motor Sport">
-        </div>
-    </section>
-
-    <section class="service-section" id="sparepart">
-        <div class="service-header">
-        <h2>Sparepart</h2>
-        <a href="{{ route('sparepart') }}" class="btn-next">Selanjutnya</a>
-        </div>
-    
-        <div class="service-grid">
-            <div class="service-card">
-                <img src="/images/oli.jpeg" alt="Oli Mesin">
-                <h3>Oli Mesin</h3>
-                <p>Kualitas terbaik untuk menjaga performa motor.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Pesan Sekarang!</a>
-            </div>
-    
-            <div class="service-card">
-                <img src="/images/aki.jpeg" alt="Aki Motor">
-                <h3>Aki Motor</h3>
-                <p>Daya tahan lama dan aman digunakan.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Pesan Sekarang!</a>
-            </div>
-    
-            <div class="service-card">
-                <img src="/images/kampas.jpg" alt="Kampas Rem">
-                <h3>Kampas Rem</h3>
-                <p>Memberikan pengereman yang optimal.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Pesan Sekarang!</a>
-            </div>
-    
-            <div class="service-card">
-                <img src="/images/v-belt.jpeg" alt="V-Belt Motor">
-                <h3>V-Belt Motor</h3>
-                <p>Kuat dan tahan lama untuk motor matic.</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Pesan Sekarang!</a>
-            </div>
-        </div>
-    </section>
-    
     <section class="service-section" id="service">
         <div class="service-header">
             <h2>Service</h2>
-            <a href="{{ route('service') }}" class="btn-next">Selanjutnya</a>
+            <a href="{{ url('/') }}" class="btn-next">Kembali</a>
         </div>
     
         <div class="service-grid">
@@ -89,7 +38,7 @@
                 <h3>Paket Service Eliminator 1</h3>
                 <p class="detail">Service + Ganti Oli</p>
                 <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Booking!</a>
+                <a href="{{ route('bookingservice')}}" class="btn-book">Booking</a>
             </div>
     
             <div class="service-card">
@@ -97,7 +46,7 @@
                 <h3>Paket Service Eliminator 2</h3>
                 <p class="detail">Service + Ganti Velg</p>
                 <p class="price">Rp. 5.000.000</p>
-                <a href="#" class="btn-book">Booking!</a>
+                <a href="#" class="btn-book">Booking</a>
             </div>
     
             <div class="service-card">
@@ -105,7 +54,7 @@
                 <h3>Paket Service Eliminator 3</h3>
                 <p class="detail">Service + Ganti Rantai</p>
                 <p class="price">Rp. 950.000</p>
-                <a href="#" class="btn-book">Booking!</a>
+                <a href="#" class="btn-book">Booking</a>
             </div>
     
             <div class="service-card">
@@ -113,30 +62,72 @@
                 <h3>Paket Service Eliminator 4</h3>
                 <p class="detail">Service + Ganti Seal</p>
                 <p class="price">Rp. 3.000.000</p>
+                <a href="#" class="btn-cart">🛒 Keranjang</a>
+            </div>
+
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 1">
+                <h3>Paket Service Eliminator 1</h3>
+                <p class="detail">Service + Ganti Oli</p>
+                <p class="price">Rp. 2.000.000</p>
                 <a href="#" class="btn-book">Booking</a>
             </div>
-        </div>
-    </section>
+    
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 2">
+                <h3>Paket Service Eliminator 2</h3>
+                <p class="detail">Service + Ganti Velg</p>
+                <p class="price">Rp. 5.000.000</p>
+                <a href="#" class="btn-book">Booking</a>
+            </div>
+    
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 3">
+                <h3>Paket Service Eliminator 3</h3>
+                <p class="detail">Service + Ganti Rantai</p>
+                <p class="price">Rp. 950.000</p>
+                <a href="#" class="btn-book">Booking</a>
+            </div>
+    
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 4">
+                <h3>Paket Service Eliminator 4</h3>
+                <p class="detail">Service + Ganti Seal</p>
+                <p class="price">Rp. 3.000.000</p>
+                <a href="#" class="btn-cart">🛒 Keranjang</a>
+            </div>
 
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <h2>Tentang Kami</h2>
-            <p>
-                D’Delfar Bengkel Motor hadir sebagai solusi terpercaya untuk kebutuhan perawatan 
-                dan perbaikan motor Anda. Dengan mekanik berpengalaman dan peralatan modern, 
-                kami memberikan pelayanan cepat, aman, dan berkualitas.
-            </p>
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 1">
+                <h3>Paket Service Eliminator 1</h3>
+                <p class="detail">Service + Ganti Oli</p>
+                <p class="price">Rp. 2.000.000</p>
+                <a href="#" class="btn-book">Booking</a>
+            </div>
     
-            <p>
-                Kami menyediakan layanan service lengkap, sparepart original, sistem booking 
-                online, serta konsultasi gratis untuk menjaga performa motor Anda tetap optimal.
-            </p>
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 2">
+                <h3>Paket Service Eliminator 2</h3>
+                <p class="detail">Service + Ganti Velg</p>
+                <p class="price">Rp. 5.000.000</p>
+                <a href="#" class="btn-book">Booking</a>
+            </div>
     
-            <a href="#" class="about-btn">Pelajari Lebih Lanjut</a>
-        </div>
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 3">
+                <h3>Paket Service Eliminator 3</h3>
+                <p class="detail">Service + Ganti Rantai</p>
+                <p class="price">Rp. 950.000</p>
+                <a href="#" class="btn-book">Booking</a>
+            </div>
     
-        <div class="about-image">
-            <img src="/images/bengkel1.jpeg" alt="Bengkel Motor">
+            <div class="service-card">
+                <img src="/images/zx25r.png" alt="Service 4">
+                <h3>Paket Service Eliminator 4</h3>
+                <p class="detail">Service + Ganti Seal</p>
+                <p class="price">Rp. 3.000.000</p>
+                <a href="#" class="btn-cart">🛒 Keranjang</a>
+            </div>
         </div>
     </section>
     
