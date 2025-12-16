@@ -96,8 +96,8 @@
                 <a href="#" class="btn-cart">🛒 Keranjang</a>
             </div>
         </div>
-    </section>
-
+    </section>  
+            
     <section class="about-section" id="about">
         <div class="about-content">
             <h2>Tentang Kami</h2>

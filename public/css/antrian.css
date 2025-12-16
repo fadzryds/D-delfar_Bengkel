@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f2f2f2;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticket-box {
+    background: white;
+    width: 340px;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ticket-box h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.ticket-box .number {
+    margin-top: 20px;
+    font-size: 60px;
+    font-weight: bold;
+    color: #333;
+}
+
+.ticket-box p {
+    margin-top: 10px;
+    color: #777;
+}
+
+.btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px 0;
+    background: #007bff;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
