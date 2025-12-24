@@ -19,7 +19,7 @@
     <section class="service-section" id="sparepart">
         <div class="service-header">
             <h2>Sparepart</h2>
-            <a href="{{ route('sparepart') }}" class="btn-next">Selanjutnya</a>
+            <a href="{{ route('sparepart') }}" class="btn-next">Selengkapnya!</a>
         </div>
     
         <div class="service-grid">
@@ -29,7 +29,7 @@
                     <h3>{{ $sparepart->name }}</h3>
                     <p>{{ $sparepart->description ?? 'Deskripsi tidak tersedia' }}</p>
                     <p class="price">Rp. {{ number_format($sparepart->price, 0, ',', '.') }}</p>
-                    <a href="{{ route('sparepart.show', $sparepart->id) }}" class="btn-book">Detail</a>
+                    <a href="{{ route('sparepart.show', $sparepart->id) }}" class="btn-book">Beli Sparepart</a>
                 </div>
             @empty
                 <p>Belum ada sparepart tersedia.</p>
@@ -40,40 +40,56 @@
     <section class="service-section" id="service">
         <div class="service-header">
             <h2>Service</h2>
-            <a href="{{ route('service') }}" class="btn-next">Selanjutnya</a>
+            <a href="{{ route('service') }}" class="btn-next">Selengkapnya!</a>
         </div>
     
         <div class="service-grid">
             <div class="service-card">
                 <img src="/images/zx25r.png" alt="Service 1">
-                <h3>Paket Service Eliminator 1</h3>
-                <p class="detail">Service + Ganti Oli</p>
-                <p class="price">Rp. 2.000.000</p>
-                <a href="#" class="btn-book">Booking</a>
+                <h3>Paket Service Terminator 1</h3>
+                <p class="detail">Service Ringan + Ganti Oli</p>
+                <p class="price">Rp. 150.000</p>
+                @if(Auth::check())
+                    <a href="{{ route('bookings.create', ['service' => 'Paket Service Terminator 1', 'harga' => '150000']) }}" class="btn-book">Booking</a>
+                @else
+                    <button class="btn-book" onclick="openLoginModal()">Booking</button>
+                @endif
             </div>
-    
+
             <div class="service-card">
                 <img src="/images/zx25r.png" alt="Service 2">
-                <h3>Paket Service Eliminator 2</h3>
-                <p class="detail">Service + Ganti Velg</p>
-                <p class="price">Rp. 5.000.000</p>
-                <a href="#" class="btn-book">Booking</a>
+                <h3>Paket Service Terminator 2</h3>
+                <p class="detail">Tune Up + Ganti Busi</p>
+                <p class="price">Rp. 250.000</p>
+                @if(Auth::check())
+                    <a href="{{ route('bookings.create', ['service' => 'Paket Service Terminator 2', 'harga' => '250000']) }}" class="btn-book">Booking</a>
+                @else
+                    <button class="btn-book" onclick="openLoginModal()">Booking</button>
+                @endif
             </div>
     
             <div class="service-card">
                 <img src="/images/zx25r.png" alt="Service 3">
-                <h3>Paket Service Eliminator 3</h3>
-                <p class="detail">Service + Ganti Rantai</p>
-                <p class="price">Rp. 950.000</p>
-                <a href="#" class="btn-book">Booking</a>
+                <h3>Paket Service Terminator 3</h3>
+                <p class="detail">Ganti Ban + Balancing</p>
+                <p class="price">Rp. 450.000</p>
+                @if(Auth::check())
+                    <a href="{{ route('bookings.create', ['service' => 'Paket Service Terminator 3', 'harga' => '450000']) }}" class="btn-book">Booking</a>
+                @else
+                    <button class="btn-book" onclick="openLoginModal()">Booking</button>
+                @endif
             </div>
     
             <div class="service-card">
                 <img src="/images/zx25r.png" alt="Service 4">
-                <h3>Paket Service Eliminator 4</h3>
-                <p class="detail">Service + Ganti Seal</p>
-                <p class="price">Rp. 3.000.000</p>
-                <a href="#" class="btn-cart">🛒 Keranjang</a>
+                <h3>Paket Service Terminator 4</h3>
+                <p class="detail">Ganti Kampas Rem + Cek Sistem Rem</p>
+                <p class="price">Rp. 350.000</p>
+                @if(Auth::check())
+                    <a href="{{ route('bookings.create', ['service' => 'Paket Service Terminator 4', 'harga' => '350000']) }}" class="btn-book">Booking</a>
+                @else
+                    <button class="btn-book" onclick="openLoginModal()">Booking</button>
+                @endif
             </div>
         </div>
     </section>  

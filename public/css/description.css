@@ -8,14 +8,19 @@
     padding-top: 40px;
 }
 
-.back-btn {
-    padding-bottom: 10px;
-    text-align: center;
-    font-size: 40px;
+.btn-back {
+    padding: 10px 20px;
+    background: #b30000;
+    color: #fff;
+    border-radius: 8px;
     text-decoration: none;
-    color: black;
-    margin-bottom: 20px;
-    display: inline-block;
+    font-weight: 600;
+    transition: 0.25s ease;
+    margin-bottom: 30px;
+}
+.btn-back:hover {
+    background: #7a0000;
+    transform: translateY(-3px);
 }
 
 .detail-card {
@@ -53,12 +58,23 @@
     cursor: pointer;
 }
 
+.qty-input {
+    width: 60px;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
 .cart-btn {
     background: #e53e3e;
     padding: 10px 20px;
     color: white;
     border-radius: 6px;
     border: none;
+    cursor: pointer;
 }
 
 

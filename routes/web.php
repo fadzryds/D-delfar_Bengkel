@@ -5,10 +5,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\HistorySparepartController;
+use App\Http\Controllers\HistoryServiceController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\SparepartCheckoutController;
+use App\Http\Controllers\SparepartOrderController;
+use App\Http\Controllers\CheckoutSparepartController;
+use App\Http\Controllers\CartController;
 
 // Landing Page
 Route::get('/', [SparepartController::class, 'landing'])->name('landing');
@@ -43,6 +49,13 @@ Route::middleware('auth')->group(function () {
 
 // Halaman lain
 Route::get('/sparepart', [SparepartController::class, 'index'])->name('sparepart');
+Route::middleware('auth')->get('/historyservice', [HistoryServiceController::class, 'index'])
+    ->name('historyservice')
+    ->middleware('auth');
+Route::middleware('auth')->get('/historysparepart', [HistorySparepartController::class, 'index'])
+    ->name('historysparepart')
+    ->middleware('auth');
+
 
 // Detail sparepart
 Route::get('/sparepart/{id}', [SparepartController::class, 'show'])->name('sparepart.show');
@@ -57,8 +70,38 @@ Route::get('/antrian', function () {
     return view('landing.antrian');
 })->name('antrian');
 
+// Routes untuk Booking
+Route::resource('bookings', BookingController::class);
+
 // Halaman invoice (hanya user login)
 Route::middleware('auth')->get('/invoice/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
 
-// History customer
-Route::get('customer/{id}/history', [HistoryController::class, 'index'])->name('customer.history');
+// ================= CART =================
+Route::post('/cart/add', [CartController::class, 'add'])
+    ->name('cart.add');
+
+// Add cart ke Checkout
+Route::get('/checkout-sparepart', [CheckoutSparepartController::class, 'index'])
+    ->name('checkout.sparepart');
+
+// Route::post('/checkout-sparepart/confirm', [CheckoutSparepartController::class, 'store'])
+//     ->name('checkout.sparepart.store');
+
+// cart to cart
+Route::get('/checkout', function () {
+    return view('landing.CheckoutSparepart');
+})->name('chekout');
+
+// ================= CHECKOUT SPAREPART =================
+Route::middleware('auth')->group(function () {
+
+    // dari Checkout → Confirm
+    Route::get('/checkout-sparepart/confirm', 
+        [CheckoutSparepartController::class, 'confirm']
+    )->name('checkout.sparepart.confirm');
+
+    // simpan ke database
+    Route::post('/checkout-sparepart/store', 
+        [CheckoutSparepartController::class, 'store']
+    )->name('checkout.sparepart.store');
+});

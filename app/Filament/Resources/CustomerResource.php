@@ -13,7 +13,7 @@ class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon  = 'heroicon-o-users';
     protected static ?string $navigationGroup = 'Master Data';
     protected static ?string $navigationLabel = 'Customer';
 
@@ -22,26 +22,43 @@ class CustomerResource extends Resource
         return $form->schema([
 
             Forms\Components\Select::make('user_id')
-                ->label('Nama Customer')
-                ->options(
-                    User::where('role', 'user')
-                        ->pluck('name', 'id')
-                )
+                ->label('Akun User')
+                ->relationship('user', 'name')
                 ->searchable()
-                ->required(),
+                ->required()
+                ->live()
+                ->afterStateUpdated(function ($state, callable $set) {
+                    $user = User::find($state);
+                    if ($user) {
+                        $set('nama_pelanggan', $user->name);
+                        $set('email', $user->email);
+                    }
+                }),
 
-            Forms\Components\TextInput::make('no_ktp')
-                ->label('No KTP')
+            Forms\Components\TextInput::make('nama_pelanggan')
+                ->label('Nama Customer')
+                ->required()
+                ->maxLength(100),
+
+            Forms\Components\TextInput::make('no_hp')
+                ->label('Nomor Handphone')
+                ->required()
+                ->maxLength(20),
+
+            Forms\Components\TextInput::make('email')
+                ->label('Email Customer')
+                ->email()
                 ->required()
                 ->unique(ignoreRecord: true),
 
-            Forms\Components\TextInput::make('no_hp')
-                ->label('Nomor HP')
-                ->tel()
+            Forms\Components\Select::make('Option')
+                ->label('Jenis Customer')
+                ->options([
+                    'Cust-Service'   => 'Customer Service',
+                    'Cust-Sparepart' => 'Customer Sparepart',
+                ])
+                ->default('Cust-Service')
                 ->required(),
-
-            Forms\Components\Textarea::make('alamat')
-                ->columnSpanFull(),
 
         ])->columns(2);
     }
@@ -50,33 +67,36 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->label('Nama Customer')
-                    ->searchable(),
 
-                Tables\Columns\TextColumn::make('no_ktp')
-                    ->label('No KTP'),
+                Tables\Columns\TextColumn::make('nama_pelanggan')
+                    ->label('Nama Customer')
+                    ->searchable()
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('no_hp')
-                    ->label('HP'),
+                    ->label('No HP'),
 
-                Tables\Columns\TextColumn::make('kendaraans.nomor_plat')
-                    ->label('Nomor Plat')
-                    ->badge()
-                    ->separator(', '),
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Email'),
+
+                Tables\Columns\TextColumn::make('Option')
+                    ->label('JenisCust'),
+
             ])
+            
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCustomers::route('/'),
+            'index'  => Pages\ListCustomers::route('/'),
             'create' => Pages\CreateCustomer::route('/create'),
-            'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'edit'   => Pages\EditCustomer::route('/{record}/edit'),
         ];
     }
 }

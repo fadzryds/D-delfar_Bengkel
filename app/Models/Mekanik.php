@@ -21,4 +21,9 @@ class Mekanik extends Model
         return $this->hasMany(Invoice::class);
     }
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'mekanik_id');
+    }
+
 }

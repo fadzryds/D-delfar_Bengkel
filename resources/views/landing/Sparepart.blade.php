@@ -7,7 +7,7 @@
 <section class="service-section" id="sparepart">
     <div class="service-header">
         <h2>Sparepart</h2>
-        <a href="{{ url('/') }}" class="btn-next">Kembali</a>
+        <a href="{{ url('/') }}" class="btn-next">← Kembali</a>
     </div>
 
     <div class="service-grid">
@@ -17,7 +17,7 @@
                 <h3>{{ $sparepart->name }}</h3>
                 <p>{{ $sparepart->description ?? 'Deskripsi tidak tersedia' }}</p>
                 <p class="price">Rp. {{ number_format($sparepart->price, 0, ',', '.') }}</p>
-                <a href="{{ route('sparepart.show', $sparepart->id) }}" class="btn-book">Detail</a>
+                <a href="{{ route('sparepart.show', $sparepart->id) }}" class="btn-book">Beli Sparepart</a>
             </div>
         @empty
             <p>Belum ada sparepart tersedia.</p>

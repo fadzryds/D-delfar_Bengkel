@@ -24,6 +24,6 @@ class SparepartController extends Controller
         $sparepart = Sparepart::findOrFail($id);
         $otherSpareparts = Sparepart::where('id', '!=', $id)->get();
 
-        return view('landing.Description', compact('sparepart', 'otherSpareparts'));
+        return view('landing.OrderSparepart', compact('sparepart', 'otherSpareparts'));
     }
 }

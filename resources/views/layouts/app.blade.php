@@ -7,6 +7,7 @@
         <title>D'Delfar Bengkel Motor</title>
     
         <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+        <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
     </head>
     
 <body>
@@ -25,9 +26,15 @@
             <a href="/service">Service</a>
             <a href="/about">About</a>
         </div>
-    
+
+
         @auth
         <div class="profile-wrapper">
+            <!-- Keranjang -->
+            <div>
+                <a class="keranjang" href="{{ route('checkout.sparepart')}}"><i class='bx  bx-cart'></i> </a>
+            </div>
+
             <img src="{{ asset('storage/' . auth()->user()->foto) }}"
                  class="nav-avatar"
                  id="avatarToggle">
@@ -44,8 +51,16 @@
     
                 <div class="dropdown-divider"></div>
     
-                <a href="/profile" class="btn-edit">Lihat Profile</a>
-    
+                <a href="/profile" class="btn-edit">👤 Profile</a>
+                <div class="dropdown-riwayat">
+                    <a href="#" class="btn-edit dropdown-riwayat-toggle">Riwayat</a>
+                    <div class="dropdown-riwayat-menu">
+                        <a href="{{ route('historysparepart') }}">Riwayat Sparepart</a>
+                        <a href="{{ route('historyservice') }}">Riwayat Service</a>
+                    </div>
+                </div>
+
+
                 @if(auth()->user()->role !== 'user')
                     <a href="{{ route('filament.admin.pages.dashboard') }}" class="btn-admin">Admin Panel</a>
                 @endif
@@ -193,6 +208,27 @@
                 mobileProfileDropdown.classList.remove("show");
             }
         });
+
+
+        /* ================================ */
+        // DROPWOWN MENU (RIWAYAT)
+        /* ================================ */
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggle = document.querySelector(".dropdown-riwayat-toggle");
+            const menu = document.querySelector(".dropdown-riwayat-menu");
+
+            toggle.addEventListener("click", function (e) {
+                e.preventDefault();
+                menu.style.display = menu.style.display === "block" ? "none" : "block";
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!e.target.closest(".dropdown-riwayat")) {
+                    menu.style.display = "none";
+                }
+            });
+        });
+
         </script>
 </body>
 </html>

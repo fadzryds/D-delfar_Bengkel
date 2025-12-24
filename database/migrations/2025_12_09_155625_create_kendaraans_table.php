@@ -9,14 +9,11 @@ return new class extends Migration {
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')
-                  ->constrained()
-                  ->cascadeOnDelete();
-
-            $table->string('nomor_plat')->unique();
-            $table->string('merk');
-            $table->string('tipe');
-            $table->year('tahun');
-            $table->string('warna')->nullable();
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('jenis_motor');
+            $table->string('tipe_kendaraan');
+            $table->string('nomor_polisi');
             $table->timestamps();
         });
     }

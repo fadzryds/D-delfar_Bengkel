@@ -78,9 +78,26 @@ body {
 }
 
 /* WRAPPER PROFILE */
+/* Keranjang di navbar (samping avatar) */
 .profile-wrapper {
-    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* jarak antara keranjang & avatar */
 }
+
+.keranjang {
+    padding: 8px;
+    font-size: 24px;
+    color: #7a0000;
+    cursor: pointer;
+}
+
+/* Hover efek keranjang */
+.keranjang:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
 
 /* DROPDOWN */
 .dropdown-profile {
@@ -914,6 +931,7 @@ body {
     border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
+    cursor: pointer;
 }
 
 /* ============================= */
@@ -1099,6 +1117,42 @@ body {
     font-size: 14px;
     color: #aaa;
 }
+
+/* Dropdown Riwayat */
+.dropdown-riwayat {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-riwayat-toggle {
+    cursor: pointer;
+}
+
+.dropdown-riwayat-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown-riwayat-menu a {
+    display: block;
+    padding: 10px 14px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dropdown-riwayat-menu a:hover {
+    background: #f2f2f2;
+}
+
 
 /* ============================= */
 /*          RESPONSIVE           */

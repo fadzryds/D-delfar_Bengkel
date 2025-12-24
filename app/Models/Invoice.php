@@ -9,6 +9,7 @@ class Invoice extends Model
     protected $fillable = [
         'customer_id',
         'kendaraan_id',
+        'service_booking_id',
         'mekanik_id',
         'tanggal_servis',
         'jenis_servis',
@@ -23,6 +24,12 @@ class Invoice extends Model
     {
         return $this->belongsTo(Customer::class,'customer_id');
     }
+
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class, 'service_booking_id');
+    }
+
 
     public function kendaraan()
     {

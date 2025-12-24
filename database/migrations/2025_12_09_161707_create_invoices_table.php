@@ -8,23 +8,33 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
+        $table->id();
 
-            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('kendaraan_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('mekanik_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('customer_id')
+            ->constrained()
+            ->cascadeOnDelete();
 
-            $table->date('tanggal_servis');
-            $table->string('jenis_servis');
-            $table->text('keluhan')->nullable();
-            $table->text('catatan_mekanik')->nullable();
-            $table->integer('km_servis')->nullable();
+        $table->foreignId('kendaraan_id')
+            ->constrained()
+            ->cascadeOnDelete();
 
-            $table->decimal('total_biaya', 12, 2)->default(0);
-            $table->enum('status', ['proses','selesai'])->default('proses');
+        $table->foreignId('mekanik_id')
+            ->nullable()
+            ->constrained('mekaniks')
+            ->nullOnDelete();
 
-            $table->timestamps();
-        });
+        $table->date('tanggal_servis');
+        $table->string('jenis_servis');
+        $table->text('keluhan')->nullable();
+        $table->text('catatan_mekanik')->nullable();
+        $table->integer('km_servis')->nullable();
+
+        $table->decimal('total_biaya', 12, 2)->default(0);
+        $table->enum('status', ['proses','selesai'])->default('proses');
+
+        $table->timestamps();
+    });
+
     }
 
     public function down(): void

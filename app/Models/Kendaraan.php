@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kendaraan extends Model
 {
+    protected $table = 'kendaraans';
+
     protected $fillable = [
         'customer_id',
-        'nomor_plat',
-        'merk',
-        'tipe',
-        'tahun',
-        'warna',
+        'jenis_motor',
+        'tipe_kendaraan',
+        'nomor_polisi',
+        'status',
     ];
 
     public function customer()
@@ -20,9 +21,13 @@ class Kendaraan extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function invoices()
+    public function serviceBooking()
     {
-        return $this->hasMany(Invoice::class);
+        return $this->hasMany(Booking::class, 'kendaraan_id');
     }
 
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'kendaraan_id');
+    }
 }
